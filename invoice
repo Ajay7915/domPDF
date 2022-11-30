@@ -33,8 +33,10 @@ class PDFController extends Controller
      */
     public function generateInvoicePDF()
     {
-        $pdf = PDF::loadView('myPDF');
-        return $pdf->download('nicesnippets.pdf');
+        $pdf = new PDF();
+        $pdf = PDF::loadView('bill.opd');
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('invoice.pdf', ['Attachment' => 0]);
     }
 }
 
